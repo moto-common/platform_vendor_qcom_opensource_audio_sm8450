@@ -1,0 +1,7 @@
+subdirs = [
+     "*"
+]
+hidl_package_root {
+     name: "vendor.qti.hardware.pal",
+     path: "vendor/qcom/opensource/audio/sm8450/pal/ipc/HwBinders/interfaces/pal",
+}

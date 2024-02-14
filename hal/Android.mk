@@ -14,6 +14,7 @@ LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH  := $(TARGET_OUT_VENDOR_ETC)/init
 include $(BUILD_PREBUILT)
 
+ifneq ($(QCPATH),)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := audio.primary.$(TARGET_BOARD_PLATFORM)
@@ -54,7 +55,8 @@ LOCAL_C_INCLUDES += \
     system/media/audio_utils/include \
     external/expat/lib \
     vendor/qcom/opensource/core-utils/fwk-detect \
-    $(call project-path-for,qcom-audio)/pal \
+    vendor/qcom/opensource/audio/sm8450/pal \
+    vendor/qcom/opensource/audio/sm8450/pal/ipc/HwBinders/pal_ipc_server/inc \
     $(call include-path-for, audio-effects) \
     $(LOCAL_PATH)/audio_extn
 
@@ -99,7 +101,7 @@ ifeq ($(strip $(AUDIO_FEATURE_ENABLED_AGM_HIDL)),true)
 
   LOCAL_CFLAGS += -DAGM_HIDL_ENABLED
   LOCAL_C_INCLUDES += \
-    $(TOP)/$(call project-path-for,qcom-audio)/agm/ipc/HwBinders/agm_ipc_client/
+    $(TOP)/vendor/qcom/opensource/audio/sm8450/agm/ipc/HwBinders/agm_ipc_client/
 
   LOCAL_HEADER_LIBRARIES += \
     libagm_headers
@@ -114,7 +116,7 @@ endif
 endif
 
 include $(BUILD_SHARED_LIBRARY)
-
+endif
 
 # Legacy USB AUDIO HAL
 ifneq ($(filter bengal,$(TARGET_BOARD_PLATFORM)),)
