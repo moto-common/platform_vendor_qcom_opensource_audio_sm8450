@@ -7,7 +7,7 @@ LOCAL_MODULE_OWNER  := qti
 LOCAL_MODULE_TAGS   := optional
 LOCAL_VENDOR_MODULE := true
 
-LOCAL_CFLAGS        += -Wall
+#LOCAL_CFLAGS        += -Wall
 LOCAL_SRC_FILES     := src/agm_pcm_plugin.c
 
 LOCAL_HEADER_LIBRARIES := \
